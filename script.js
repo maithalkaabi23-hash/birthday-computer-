@@ -1,9 +1,33 @@
 /* =========================
+   PROGRESSION
+========================= */
+
+let gamesUnlocked = false;
+let secretUnlocked = false;
+
+
+/* =========================
    WINDOW FUNCTIONS
 ========================= */
 
 function openWindow(id) {
+
+    // Block Games until File Explorer has been opened
+    if (id === "gamesWindow" && !gamesUnlocked) {
+        return;
+    }
+
+    // Block Secret until the game has been completed
+    if (id === "secretWindow" && !secretUnlocked) {
+        return;
+    }
+
     document.getElementById(id).classList.remove("hidden");
+
+    // Opening File Explorer unlocks Games
+    if (id === "fileWindow") {
+        gamesUnlocked = true;
+    }
 }
 
 function closeWindow(id) {
@@ -56,6 +80,11 @@ function openReadme() {
 ========================= */
 
 function openSecret() {
+
+    if (!secretUnlocked) {
+        return;
+    }
+
     openWindow("secretWindow");
 }
 
@@ -100,6 +129,11 @@ let targetsHit = 0;
 const totalTargets = 10;
 
 function startAimGame() {
+
+    // Games cannot be played until File Explorer is opened
+    if (!gamesUnlocked) {
+        return;
+    }
 
     targetsHit = 0;
 
@@ -159,9 +193,16 @@ function hitTarget() {
             target.remove();
         }
 
+        // Game completed — unlock Secret
+        secretUnlocked = true;
+
         setTimeout(() => {
 
-            alert("TEST COMPLETE\n\nACCESS CODE: 0313");
+            alert(
+                "TEST COMPLETE\n\n" +
+                "ACCURACY: 0%\n\n" +
+                "ACCESS CODE: 0313"
+            );
 
         }, 150);
 
