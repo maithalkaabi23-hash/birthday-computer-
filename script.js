@@ -197,12 +197,12 @@ function hitTarget() {
 
         setTimeout(() => {
 
-            alert(
-                "results:\n\n" +
-                "accuracy: ???\n\n" +
-                "hehe this is the passcode: 0313"
-            );
-
+         alert(
+    "test complete hehe\n\n" +
+    "accuracy: ???\n\n" +
+    "hmm... i guess you earned this.\n" +
+    "passcode: 0313"
+);
         }, 150);
 
         return;
