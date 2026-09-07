@@ -12,23 +12,19 @@ let secretUnlocked = false;
 
 function openWindow(id) {
 
-    // Block Games until File Explorer has been opened
+    // Games stays locked until File Explorer is opened
     if (id === "gamesWindow" && !gamesUnlocked) {
-        return;
-    }
-
-    // Block Secret until the game has been completed
-    if (id === "secretWindow" && !secretUnlocked) {
         return;
     }
 
     document.getElementById(id).classList.remove("hidden");
 
     // Opening File Explorer unlocks Games
-    if (id === "fileWindow") {
+    if (id === "filesWindow") {
         gamesUnlocked = true;
     }
 }
+
 
 function closeWindow(id) {
     document.getElementById(id).classList.add("hidden");
@@ -81,12 +77,14 @@ function openReadme() {
 
 function openSecret() {
 
+    // Secret stays locked until the game is completed
     if (!secretUnlocked) {
         return;
     }
 
     openWindow("secretWindow");
 }
+
 
 function unlockSecret() {
 
@@ -128,9 +126,10 @@ function showFinalScreen() {
 let targetsHit = 0;
 const totalTargets = 10;
 
+
 function startAimGame() {
 
-    // Games cannot be played until File Explorer is opened
+    // Prevent bypassing the Games lock
     if (!gamesUnlocked) {
         return;
     }
@@ -193,7 +192,7 @@ function hitTarget() {
             target.remove();
         }
 
-        // Game completed — unlock Secret
+        // Completing the game unlocks Secret
         secretUnlocked = true;
 
         setTimeout(() => {
@@ -251,6 +250,7 @@ function updateClock() {
         .textContent = `${hours}:${minutes} ${suffix}`;
 
 }
+
 
 updateClock();
 
