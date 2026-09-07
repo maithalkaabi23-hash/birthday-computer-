@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+    <main class="desktop">
+
+        <!-- Desktop icons -->
+        <div class="desktop-icons">
+
+            <button class="desktop-icon" onclick="openWindow('musicWindow')">
+                <span class="icon">🎵</span>
+                <span>Music</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openWindow('filesWindow')">
+                <span class="icon">📁</span>
+                <span>File Explorer</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openWindow('gamesWindow')">
+                <span class="icon">🎮</span>
+                <span>Games</span>
+            </button>
+
+            <button class="desktop-icon locked" onclick="openSecret()">
+                <span class="icon">🔒</span>
+                <span>Secret</span>
+            </button>
+
+        </div>
+
+
+        <!-- Sticky note -->
+        <div class="sticky-note">
+            <div class="sticky-pin"></div>
+
+            <p>hey</p>
+            <p>start with music.</p>
+            <p>password: <strong>monkey</strong></p>
+        </div>
+
+
+        <!-- MUSIC WINDOW -->
+        <div class="window hidden" id="musicWindow">
+
+            <div class="title-bar">
+                <span>Music.exe</span>
+                <button onclick="closeWindow('musicWindow')">×</button>
+            </div>
+
+            <div class="window-content">
+
+                <div id="musicPassword">
+                    <h2>Music</h2>
+                    <p>password required</p>
+
+                    <input
+                        type="password"
+                        id="musicInput"
+                        autocomplete="off"
+                    >
+
+                    <button onclick="unlockMusic()">ENTER</button>
+
+                    <p class="error" id="musicError"></p>
+                </div>
+
+
+                <div id="musicPlayer" class="hidden">
+
+                    <div class="album-placeholder">
+                        ♫
+                    </div>
+
+                    <h2>Holding You Holding Me</h2>
+                    <p>CAS</p>
+
+                    <audio id="audioPlayer" controls>
+                        <!--
+                        ADD YOUR MP3 LATER:
+
+                        <source
+                            src="music/holding-you-holding-me.mp3"
+                            type="audio/mpeg"
+                        >
+                        -->
+                    </audio>
+
+                    <div class="music-clue">
+                        <p>there's something else on this computer.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- FILE EXPLORER WINDOW -->
+        <div class="window hidden" id="filesWindow">
+
+            <div class="title-bar">
+                <span>File Explorer</span>
+                <button onclick="closeWindow('filesWindow')">×</button>
+            </div>
+
+            <div class="window-content">
+
+                <div class="address-bar">
+                    C:\Users\Guest\Desktop
+                </div>
+
+                <div class="file-grid">
+
+                    <button class="file">
+                        <span>📁</span>
+                        Downloads
+                    </button>
+
+                    <button class="file">
+                        <span>📁</span>
+                        Pictures
+                    </button>
+
+                    <button class="file">
+                        <span>📁</span>
+                        Documents
+                    </button>
+
+                    <button class="file" onclick="openReadme()">
+                        <span>📄</span>
+                        readme.txt
+                    </button>
+
+                </div>
+
+                <div id="readme" class="text-file hidden">
+                    <p>you found me.</p>
+                    <p>but this isn't what you're looking for.</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- GAMES WINDOW -->
+        <div class="window hidden" id="gamesWindow">
+
+            <div class="title-bar">
+                <span>Games</span>
+                <button onclick="closeWindow('gamesWindow')">×</button>
+            </div>
+
+            <div class="window-content">
+
+                <h2>Games</h2>
+
+                <button class="game-button" onclick="startAimGame()">
+                    Aim Training
+                </button>
+
+                <div id="aimGame" class="aim-game hidden">
+
+                    <div class="aim-header">
+                        TARGETS:
+                        <span id="targetCount">0</span>/10
+                    </div>
+
+                    <div id="aimArea"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- SECRET WINDOW -->
+        <div class="window hidden" id="secretWindow">
+
+            <div class="title-bar">
+                <span>Secret.txt</span>
+                <button onclick="closeWindow('secretWindow')">×</button>
+            </div>
+
+            <div class="window-content">
+
+                <h2>ACCESS DENIED</h2>
+
+                <p>password required</p>
+
+                <input
+                    type="password"
+                    id="secretInput"
+                    autocomplete="off"
+                >
+
+                <button onclick="unlockSecret()">OPEN</button>
+
+                <p class="error" id="secretError"></p>
+
+            </div>
+        </div>
+
+
+        <!-- FINAL LETTER -->
+        <div class="final-screen hidden" id="finalScreen">
+
+            <div class="letter">
+
+                <p>hey.</p>
+
+                <p>
+                    happy birthday, loser.
+                </p>
+
+                <p>
+                    I made you something.
+                </p>
+
+                <p>
+                    more goes here later :)
+                </p>
+
+                <p class="signature">
+                    — me
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- TASKBAR -->
+        <div class="taskbar">
+
+            <button class="start-button" onclick="toggleStartMenu()">
+                START
+            </button>
+
+            <div class="taskbar-time" id="clock">
+                11:47 PM
+            </div>
+
+        </div>
+
+
+        <!-- START MENU -->
+        <div class="start-menu hidden" id="startMenu">
+
+            <div class="start-title">computer</div>
+
+            <div>Programs</div>
+            <div>Documents</div>
+            <div>Settings</div>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
